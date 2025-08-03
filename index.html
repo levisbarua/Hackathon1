@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEVIS BARUA - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: rgb(14, 5, 32);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Programming Languages */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .language-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .language-card:hover {
+            transform: scale(1.05);
+        }
+
+        .language-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 4px;
+            animation: fillBar 2s ease;
+        }
+
+        /* Education */
+        .education-item {
+            background: linear-gradient(135deg, #0727c6f5 0%, #0b03e4 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cv-download {
+            display: inline-block;
+            background: #2e28a7;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .cv-download:hover {
+            background: #218838;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            color: #d63384;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: #d63384;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #b02a5b;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0%;
+            }
+            to {
+                width: var(--width);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                margin: 1rem 0;
+                padding: 2rem 1rem;
+            }
+
+            .languages-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Skill bar widths */
+        .html-progress { --width: 90%; width: 90%; }
+        .css-progress { --width: 85%; width: 85%; }
+        .js-progress { --width: 80%; width: 80%; }
+        .python-progress { --width: 75%; width: 75%; }
+        .react-progress { --width: 70%; width: 70%; }
+        .node-progress { --width: 65%; width: 65%; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">My Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#languages">Languages</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Hi! I'm LEVIS BARUA</h1>
+                <p>A passionate web developer with a love for creating functional and beautiful web experiences</p>
+                <a href="#contact" class="cta-button">Let's Work Together</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- About Section -->
+            <section id="about">
+                <h2>About Me</h2>
+                <p>Welcome to my digital portfolio! I'm a dedicated web developer who thrives on transforming creative ideas into dynamic, user-friendly web experiences. My journey in technology began with curiosity and has evolved into a passion for crafting solutions that make a real difference.</p>
+                <p>I believe in the power of clean code, intuitive design, and continuous learning. Every project I undertake is an opportunity to push boundaries and deliver exceptional results that exceed expectations.</p>
+            </section>
+
+            <!-- Programming Languages -->
+            <section id="languages">
+                <h2>Programming Languages</h2>
+                <div class="languages-grid">
+                    <div class="language-card">
+                        <h3>HTML5</h3>
+                        <p>Semantic markup and modern web standards</p>
+                    </div>
+                    <div class="language-card">
+                        <h3>CSS3</h3>
+                        <p>Advanced styling, animations, and responsive design</p>
+                    </div>
+                    <div class="language-card">
+                        <h3>JavaScript</h3>
+                        <p>ES6+, DOM manipulation, and modern frameworks</p>
+                    </div>
+                    <div class="language-card">
+                        <h3>Python</h3>
+                        <p>Backend development and data processing</p>
+                    </div>
+                    <div class="language-card">
+                        <h3>React</h3>
+                        <p>Component-based UI development</p>
+                    </div>
+                    <div class="language-card">
+                        <h3>Node.js</h3>
+                        <p>Server-side JavaScript and API development</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <div class="skill-name">HTML5</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress html-progress"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">CSS3</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress css-progress"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress js-progress"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Python</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress python-progress"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">React</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress react-progress"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Node.js</div>
+                        <div class="skill-bar">
+                            <div class="skill-progress node-progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Educational Background -->
+            <section id="education">
+                <h2>🎓 Educational Background</h2>
+                <div class="education-item">
+                    <h3>Bachelor of Computer Science</h3>
+                    <p><strong>KABARAK UNIVERSITY</strong></p>
+                    <p>Graduated: 2023 | GPA: 80 POINTS</p>
+                    <p>Relevant Coursework: Data Structures, Algorithms, Web Development, Database Systems, Software Engineering</p>
+                </div>
+                <div class="education-item">
+                    <h3>Relevant Certifications</h3>
+                    <p>• Web Development Bootcamp</p>
+                    <p>• JavaScript ES6 Certification</p>
+                    <p>• Responsive Web Design Certification</p>
+                </div>
+                <a href="#" class="cv-download">📄 Download My CV</a>
+            </section>
+
+            <!-- Interests -->
+            <section id="interests">
+                <h2>💡 Professional Interests</h2>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <h3>Web Development</h3>
+                        <p>Exploring modern frameworks and best practices. I'm passionate about creating responsive, accessible, and performant web applications that provide exceptional user experiences.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Tech Innovations</h3>
+                        <p>Keeping up with emerging trends in technology, from AI integration to progressive web apps. I love staying ahead of the curve and implementing cutting-edge solutions.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>UI/UX Design</h3>
+                        <p>Bridging the gap between design and development. I believe great functionality should be paired with intuitive and beautiful interfaces.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Open Source</h3>
+                        <p>Contributing to the developer community through open source projects and sharing knowledge through documentation and tutorials.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section id="projects">
+                <h2>🛠️ Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-stack e-commerce solution built with modern web technologies. Features include user authentication, payment processing, and inventory management.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Task Management App</h3>
+                        <p>A collaborative project management tool with real-time updates, file sharing, and team communication features. Built for productivity and ease of use.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Weather Dashboard</h3>
+                        <p>An interactive weather application that provides detailed forecasts, historical data, and beautiful visualizations using modern APIs and responsive design.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Portfolio Website</h3>
+                        <p>This very website! A showcase of modern CSS techniques, animations, and responsive design principles. Built with accessibility and performance in mind.</p>
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact">
+                <h2>📬 Get In Touch</h2>
+                <p>I'm always excited to discuss new opportunities, collaborate on interesting projects, or simply connect with fellow developers. Let's create something amazing together!</p>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 LEVIS BARUA. Designed and developed using HTML & CSS only.</p>
+            <p>Ready to bring your ideas to life? Let's connect!</p>
+        </div>
+    </footer>
+</body>
+</html>
